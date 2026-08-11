@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>claude-made games</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: linear-gradient(160deg, #1b1030 0%, #2a1a4a 40%, #10182f 100%);
+    font-family: "Trebuchet MS", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: #fff;
+  }
+  #wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 4px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+  p.sub {
+    text-align: center;
+    color: #cbb8ff;
+    margin-top: 0;
+    margin-bottom: 44px;
+    font-size: 15px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  a.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  a.card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.11);
+  }
+  .emoji {
+    font-size: 40px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+  }
+  .card p {
+    margin: 0 0 14px;
+    font-size: 13.5px;
+    color: #d8cdf5;
+    line-height: 1.6;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 11px;
+    background: rgba(255,255,255,0.12);
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: #fff;
+  }
+  footer {
+    text-align: center;
+    margin-top: 56px;
+    color: #8a7ab0;
+    font-size: 12px;
+  }
+  footer a { color: #cbb8ff; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <h1>🎮 claude-made games</h1>
+  <p class="sub">全部ブラウザだけで動く自作ゲーム3本(スマホ対応)</p>
+
+  <div class="grid">
+    <a class="card" href="https://yasusi-1234.github.io/claude-make-mariohuu-game/">
+      <span class="emoji">🍄</span>
+      <h2>なんちゃってマリオ</h2>
+      <p>横スクロールアクション。全4ステージ、クリボー・ノコノコ・コウモリ・トゲトゲ・食虫植物が登場。ステージごとにテーマが変わる。</p>
+      <div class="tags"><span class="tag">アクション</span><span class="tag">全4面</span></div>
+    </a>
+
+    <a class="card" href="https://yasusi-1234.github.io/claude-make-shooting-game/">
+      <span class="emoji">🚀</span>
+      <h2>なんちゃってシューティング</h2>
+      <p>縦スクロールシューティング。5ウェーブ+ラスボス戦。弾幕を避けながら敵を全滅させよう。</p>
+      <div class="tags"><span class="tag">シューティング</span><span class="tag">ボス戦あり</span></div>
+    </a>
+
+    <a class="card" href="https://yasusi-1234.github.io/claude-make-rpg-game/">
+      <span class="emoji">⚔️</span>
+      <h2>なんちゃってロープレ</h2>
+      <p>町とダンジョンを歩き回るミニRPG。草むらでランダムエンカウント、ターン制バトルでレベルを上げて魔王を倒そう。</p>
+      <div class="tags"><span class="tag">RPG</span><span class="tag">ターン制バトル</span></div>
+    </a>
+  </div>
+
+  <footer>Built with Claude Code 🤖</footer>
+</div>
+</body>
+</html>
