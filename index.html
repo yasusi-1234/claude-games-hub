@@ -85,6 +85,61 @@
     font-size: 12px;
   }
   footer a { color: #cbb8ff; }
+  h2.section {
+    font-size: 20px;
+    margin: 56px 0 4px;
+    text-align: center;
+  }
+  p.sectionSub {
+    text-align: center;
+    color: #cbb8ff;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+  .achGroup {
+    margin-bottom: 20px;
+  }
+  .achGroupTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #d8cdf5;
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .achGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .achBadge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .achBadge.unlocked {
+    background: rgba(255,213,74,0.12);
+    border-color: rgba(255,213,74,0.35);
+  }
+  .achIcon {
+    font-size: 20px;
+    width: 26px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .achBadge.locked { color: #6a5f8a; }
+  .achBadge.unlocked { color: #ffe9a8; }
+  .achCount {
+    text-align: center;
+    color: #cbb8ff;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
 </style>
 </head>
 <body>
@@ -96,8 +151,8 @@
     <a class="card" href="https://yasusi-1234.github.io/claude-make-mariohuu-game/">
       <span class="emoji">🍄</span>
       <h2>なんちゃってマリオ</h2>
-      <p>横スクロールアクション。全4ステージ、クリボー・ノコノコ・コウモリ・トゲトゲ・食虫植物が登場。ステージごとにテーマが変わる。</p>
-      <div class="tags"><span class="tag">アクション</span><span class="tag">全4面</span></div>
+      <p>横スクロールアクション。全5ステージ、クリボー・ノコノコ・コウモリ・トゲトゲ・食虫植物が登場、最終面は3回踏んで倒すボス戦。</p>
+      <div class="tags"><span class="tag">アクション</span><span class="tag">全5面</span><span class="tag">ボス戦あり</span></div>
     </a>
 
     <a class="card" href="https://yasusi-1234.github.io/claude-make-shooting-game/">
@@ -115,7 +170,70 @@
     </a>
   </div>
 
+  <h2 class="section">🏆 実績</h2>
+  <p class="sectionSub">3本のゲームで解除した実績はここに集まります(このブラウザに保存)</p>
+  <div id="achCount" class="achCount"></div>
+  <div id="achWrap"></div>
+
   <footer>Built with Claude Code 🤖</footer>
 </div>
+
+<script>
+const ACHIEVEMENT_LIST = [
+  { game: '🍄 マリオ', items: [
+    { id: 'mario_stage1', title: '初めの一歩', desc: 'ステージ1をクリア' },
+    { id: 'mario_allClear', title: '全ステージクリア！', desc: '全5ステージをクリア' },
+    { id: 'mario_bossDefeat', title: '魔王カメ討伐', desc: '最終ボスを倒す' },
+    { id: 'mario_noDamageStage', title: 'ノーダメージクリア', desc: '被ダメージなしで1ステージクリア' },
+    { id: 'mario_kicks5', title: 'カメ退治マスター', desc: 'シェルキックを5回成功' },
+    { id: 'mario_coins50', title: 'コイン収集家', desc: '累計50枚のコインを収集' },
+  ]},
+  { game: '🚀 シューティング', items: [
+    { id: 'shoot_firstWin', title: '初勝利', desc: 'WAVE 1をクリア' },
+    { id: 'shoot_bossDefeat', title: 'ボス撃破', desc: 'ラスボスを倒す' },
+    { id: 'shoot_enrageCalm', title: '怒りを鎮めし者', desc: '怒りモードのボスを撃破' },
+    { id: 'shoot_perfectWave', title: 'パーフェクトウェーブ', desc: '被弾なしで1ウェーブクリア' },
+    { id: 'shoot_powerup10', title: 'パワーアップマスター', desc: '累計10個のパワーアップを取得' },
+  ]},
+  { game: '⚔️ ロープレ', items: [
+    { id: 'rpg_firstKill', title: '冒険の始まり', desc: '初めて敵を倒す' },
+    { id: 'rpg_shopFriend', title: '商人と友達', desc: '商店で初めて買い物する' },
+    { id: 'rpg_dungeon2', title: '深部への扉', desc: '第2ダンジョンに到達' },
+    { id: 'rpg_level10', title: 'レベル10到達', desc: 'キャラクターがLv10になる' },
+    { id: 'rpg_trueHero', title: '真の勇者', desc: '真の魔王を倒す' },
+  ]},
+];
+
+function renderAchievements() {
+  let unlocked = {};
+  try { unlocked = JSON.parse(localStorage.getItem('claudeGames_achievements') || '{}'); } catch(e) {}
+  const total = ACHIEVEMENT_LIST.reduce((n,g) => n+g.items.length, 0);
+  const gotCount = ACHIEVEMENT_LIST.reduce((n,g) => n + g.items.filter(it => unlocked[it.id]).length, 0);
+  document.getElementById('achCount').textContent = gotCount + ' / ' + total + ' 解除済み';
+
+  const wrap = document.getElementById('achWrap');
+  wrap.innerHTML = '';
+  for (const group of ACHIEVEMENT_LIST) {
+    const g = document.createElement('div');
+    g.className = 'achGroup';
+    const title = document.createElement('div');
+    title.className = 'achGroupTitle';
+    title.textContent = group.game;
+    g.appendChild(title);
+    const grid = document.createElement('div');
+    grid.className = 'achGrid';
+    for (const it of group.items) {
+      const got = !!unlocked[it.id];
+      const badge = document.createElement('div');
+      badge.className = 'achBadge ' + (got ? 'unlocked' : 'locked');
+      badge.innerHTML = '<span class="achIcon">' + (got ? '🏆' : '🔒') + '</span><span><strong>' + it.title + '</strong><br>' + it.desc + '</span>';
+      grid.appendChild(badge);
+    }
+    g.appendChild(grid);
+    wrap.appendChild(g);
+  }
+}
+renderAchievements();
+</script>
 </body>
 </html>
