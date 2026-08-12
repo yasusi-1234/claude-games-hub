@@ -148,7 +148,7 @@
 <body>
 <div id="wrap">
   <h1>🎮 claude-made games</h1>
-  <p class="sub">全部ブラウザだけで動く自作ゲーム3本(スマホ対応)</p>
+  <p class="sub">全部ブラウザだけで動く自作ゲーム4本(スマホ対応)</p>
 
   <div class="grid">
     <a class="card" href="https://yasusi-1234.github.io/claude-make-mariohuu-game/">
@@ -171,10 +171,17 @@
       <p>町とダンジョンを歩き回るミニRPG。商人で武器/防具/ポーション購入、ミニボスを倒して階段の先の第2ダンジョンへ、真の魔王を目指そう。</p>
       <div class="tags"><span class="tag">RPG</span><span class="tag">ショップ</span><span class="tag">2層ダンジョン</span></div>
     </a>
+
+    <a class="card" href="https://yasusi-1234.github.io/claude-make-puzzle-game/">
+      <span class="emoji">🔔</span>
+      <h2>なんちゃってパズルベル</h2>
+      <p>落ちものパズル。ペアで落ちてくるベルを操作し、同じ色を4つ以上つなげて消そう。連鎖を決めればスコア倍増、盤面を全消しすればボーナス。</p>
+      <div class="tags"><span class="tag">パズル</span><span class="tag">連鎖</span><span class="tag">全消しボーナス</span></div>
+    </a>
   </div>
 
   <h2 class="section">🏆 実績</h2>
-  <p class="sectionSub">3本のゲームで解除した実績はここに集まります(このブラウザに保存)</p>
+  <p class="sectionSub">4本のゲームで解除した実績はここに集まります(このブラウザに保存)</p>
   <div id="achCount" class="achCount"></div>
   <div id="achWrap"></div>
 
@@ -204,6 +211,13 @@ const ACHIEVEMENT_LIST = [
     { id: 'rpg_dungeon2', title: '深部への扉', desc: '第2ダンジョンに到達' },
     { id: 'rpg_level10', title: 'レベル10到達', desc: 'キャラクターがLv10になる' },
     { id: 'rpg_trueHero', title: '真の勇者', desc: '真の魔王を倒す' },
+  ]},
+  { game: '🔔 パズルベル', items: [
+    { id: 'puzzle_firstClear', title: 'はじめての連鎖', desc: '初めてベルを4つ以上つなげて消す' },
+    { id: 'puzzle_chain3', title: '3連鎖達成', desc: '一度に3連鎖以上を決める' },
+    { id: 'puzzle_chain5', title: '5連鎖の鐘', desc: '一度に5連鎖以上を決める' },
+    { id: 'puzzle_score10000', title: 'ベル集めの達人', desc: '累計スコア10000点に到達' },
+    { id: 'puzzle_allClear', title: '盤面総ざらい', desc: '盤面のベルを全て消し尽くす(全消し)' },
   ]},
 ];
 
