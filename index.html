@@ -148,7 +148,7 @@
 <body>
 <div id="wrap">
   <h1>🎮 claude-made games</h1>
-  <p class="sub">全部ブラウザだけで動く自作ゲーム4本(スマホ対応)</p>
+  <p class="sub">全部ブラウザだけで動く自作ゲーム5本(スマホ対応)</p>
 
   <div class="grid">
     <a class="card" href="https://yasusi-1234.github.io/claude-make-mariohuu-game/">
@@ -178,10 +178,17 @@
       <p>落ちものパズル。ペアで落ちてくるベルを操作し、同じ色を4つ以上つなげて消そう。連鎖を決めればスコア倍増、盤面を全消しすればボーナス。</p>
       <div class="tags"><span class="tag">パズル</span><span class="tag">連鎖</span><span class="tag">全消しボーナス</span></div>
     </a>
+
+    <a class="card" href="https://yasusi-1234.github.io/claude-make-tower-game/">
+      <span class="emoji">🏰</span>
+      <h2>なんちゃってタワーディフェンス</h2>
+      <p>敵の通り道に4種類の塔を配置して迎撃。全10ウェーブ、最終波にはボスが登場。ライフを守り抜いて全ウェーブ防衛を目指そう。</p>
+      <div class="tags"><span class="tag">タワーディフェンス</span><span class="tag">全10波</span><span class="tag">ボス戦あり</span></div>
+    </a>
   </div>
 
   <h2 class="section">🏆 実績</h2>
-  <p class="sectionSub">4本のゲームで解除した実績はここに集まります(このブラウザに保存)</p>
+  <p class="sectionSub">5本のゲームで解除した実績はここに集まります(このブラウザに保存)</p>
   <div id="achCount" class="achCount"></div>
   <div id="achWrap"></div>
 
@@ -218,6 +225,13 @@ const ACHIEVEMENT_LIST = [
     { id: 'puzzle_chain5', title: '5連鎖の鐘', desc: '一度に5連鎖以上を決める' },
     { id: 'puzzle_score10000', title: 'ベル集めの達人', desc: '累計スコア10000点に到達' },
     { id: 'puzzle_allClear', title: '盤面総ざらい', desc: '盤面のベルを全て消し尽くす(全消し)' },
+  ]},
+  { game: '🏰 タワーディフェンス', items: [
+    { id: 'tower_firstKill', title: 'はじめての迎撃', desc: '初めて敵を倒す' },
+    { id: 'tower_wave5', title: '折り返し地点', desc: '5ウェーブ以上をクリア' },
+    { id: 'tower_allWaves', title: '防衛完了', desc: '全ウェーブをクリアして勝利する' },
+    { id: 'tower_perfectWave', title: '無傷の防衛', desc: 'ライフを1つも失わずに1ウェーブをクリア' },
+    { id: 'tower_build10', title: '建築マスター', desc: '累計10基の塔を設置' },
   ]},
 ];
 
